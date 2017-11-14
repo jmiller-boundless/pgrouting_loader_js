@@ -37,7 +37,11 @@ class App extends React.Component {
   _initialInputVerification(){
     let self = this;
     this.props.inputDatas.forEach( function ( item, index ) {
-      self._setAndValidateInput( index, item.value );
+      if(item.formType=='textbox') {
+        self._setAndValidateInput( index, item.value );
+      }else if(item.formType=='dropdown'){
+        self._setAndValidateInput( index, item.values[item.index] );
+      }
     });
     this._calculatePercent();
   }
